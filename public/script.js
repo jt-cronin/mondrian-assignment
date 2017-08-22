@@ -12,30 +12,81 @@ for (var i = 0; i<color.length; i++) {
 }
 
 for (var i = 0; i<row.length; i++){
-			row[i].addEventListener('click', function(){
+	row[i].addEventListener('click', function(){
 				
-				event.target.style.backgroundColor = paint;
-			});
-		}
+		event.target.style.backgroundColor = paint;
+	});
+}
 
+var convertRow = function(row){
+	var rowString;
+	for (var i = 0; i<3; i++){
+		switch (row[i].style.backgroundColor){
+			case "red":
+				var r = "r";
+				rowString.concat(r);
+				break;
+			case "blue":
+				var b = "b";
+				rowString.concat(b);
+				break;
+			case "white":
+				var w = "w";
+				rowString.concat(w);
+				break;
+			case "yellow":
+				var y = "y";
+				rowString.concat(y);
+				break;
+			default:
+				var other = "w";
+				rowString.concat(other);
+				break;
+		}
+	}
+	debugger
+}
+
+
+var convertSave = function(){
+var a = document.getElementById("row_1");
+var b = document.getElementById("row_2");
+var c = document.getElementById("row_3");
+var d = document.getElementById("row_4");
+debugger
+var sendString = convertRow(a.children) + convertRow(b.children) + convertRow(c.children) + convertRow(d.children);
+}
 
 var saveButton = document.getElementById("save_button")
 saveButton.addEventListener('click', function(event){
 	var savePoint = document.getElementById("painting");
-	var d = new Date();
-	var timestamp = d.toJSON();
 	event.preventDefault();
-	var storagePoint = {key: timestamp, value: savePoint};
-	var storage = {}
-	storage.append(storagePoint);
-	debugger
+	convertSave(savePoint);
 });
+
+
+
+
+
+
+
+/*var sendOff = function(event){
+	var request = event.target;
+	debugger
+	alert(request.respone);
+
+}
+
 
 var savePainting = function() {
 	var request = new XMLHttpRequest();
-	
-}
+	saveString = send
+	request.open"(POST", "/toServer?dog=" + a +  "&row2=yyyr");
+	request.send();
 
+	request.addEventListener('load', sendOff)
+}
+*/
 
 
 });
