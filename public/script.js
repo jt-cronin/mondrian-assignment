@@ -21,11 +21,20 @@ for (var i = 0; i<row.length; i++){
 
 var saveButton = document.getElementById("save_button")
 saveButton.addEventListener('click', function(event){
-var savePoint = document.getElementById("painting");
-debugger
-event.preventDefault();
-
+	var savePoint = document.getElementById("painting");
+	var d = new Date();
+	var timestamp = d.toJSON();
+	event.preventDefault();
+	var storagePoint = {key: timestamp, value: savePoint};
+	var storage = {}
+	storage.append(storagePoint);
+	debugger
 });
+
+var savePainting = function() {
+	var request = new XMLHttpRequest();
+	
+}
 
 
 
