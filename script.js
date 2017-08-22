@@ -19,5 +19,14 @@ for (var i = 0; i<row.length; i++){
 		}
 
 
+var saveButton = document.getElementById("save_button")
+saveButton.addEventListener('click', function(){
+var savePoint = document.getElementById("painting");
+debugger
+event.preventDefault();
+
+});
+
+
 
 });
