@@ -11,8 +11,7 @@ get '/toServer' do
 end
 
 post '/toServer' do
-	params[:dog]
-
-	addToFile(params[:dog])
+	params[:paintString]
+	addToFile(params[:paintString])
 	redirect '/'
 end

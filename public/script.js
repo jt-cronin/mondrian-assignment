@@ -17,51 +17,50 @@ for (var i = 0; i<row.length; i++){
 		event.target.style.backgroundColor = paint;
 	});
 }
-
+//Converts each specific row into CSV form
 var convertRow = function(row){
-	var rowString;
-	for (var i = 0; i<3; i++){
-		switch (row[i].style.backgroundColor){
-			case "red":
-				var r = "r";
-				rowString.concat(r);
+	var rowString = ""
+	for (var i = 0; i<4; i++){
+		var check = row[i].style.backgroundColor
+		switch (check){
+			case 'red':
+				rowString += "r";
 				break;
 			case "blue":
-				var b = "b";
-				rowString.concat(b);
+				rowString += "b";
 				break;
 			case "white":
-				var w = "w";
-				rowString.concat(w);
+				rowString += "w";
 				break;
 			case "yellow":
-				var y = "y";
-				rowString.concat(y);
+				rowString += "y";
 				break;
 			default:
-				var other = "w";
-				rowString.concat(other);
+				rowString += "w";
 				break;
 		}
 	}
-	debugger
+	
+	return rowString;
 }
 
-
+//breaks the painting down into rows
 var convertSave = function(){
-var a = document.getElementById("row_1");
-var b = document.getElementById("row_2");
-var c = document.getElementById("row_3");
-var d = document.getElementById("row_4");
-debugger
-var sendString = convertRow(a.children) + convertRow(b.children) + convertRow(c.children) + convertRow(d.children);
+	var a = document.getElementById("row_1");
+	var b = document.getElementById("row_2");
+	var c = document.getElementById("row_3");
+	var d = document.getElementById("row_4");
+	var sendString = convertRow(a.children) + "," + convertRow(b.children) + "," + convertRow(c.children) + "," + convertRow(d.children);
+	return sendString;
 }
 
+
+//saves the painting and gets it ready to send to the CSV
 var saveButton = document.getElementById("save_button")
 saveButton.addEventListener('click', function(event){
-	var savePoint = document.getElementById("painting");
 	event.preventDefault();
-	convertSave(savePoint);
+	var sendSavePoint = convertSave();
+	savePainting(sendSavePoint);
 });
 
 
@@ -70,23 +69,21 @@ saveButton.addEventListener('click', function(event){
 
 
 
-/*var sendOff = function(event){
+var sendOff = function(event){
 	var request = event.target;
-	debugger
-	alert(request.respone);
+	alert("Your file has been saved");
 
 }
 
 
-var savePainting = function() {
+var savePainting = function(sendSavePoint) {
 	var request = new XMLHttpRequest();
-	saveString = send
-	request.open"(POST", "/toServer?dog=" + a +  "&row2=yyyr");
-	request.send();
 
+	request.open("POST", "/toServer?paintString=" + sendSavePoint);
+	request.send();
 	request.addEventListener('load', sendOff)
 }
-*/
+
 
 
 });
