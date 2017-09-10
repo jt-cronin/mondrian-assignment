@@ -1,4 +1,4 @@
-window.addEventListener('load', function(){
+rewindow.addEventListener('load', function(){
 
 var paint = "white";
 var color = document.getElementsByClassName('color');
@@ -72,10 +72,7 @@ saveButton.addEventListener('click', function(event){
 var sendOff = function(event){
 	var request = event.target;
 	alert("Your file has been saved");
-
 }
-
-
 var savePainting = function(sendSavePoint) {
 	var request = new XMLHttpRequest();
 
@@ -83,7 +80,4 @@ var savePainting = function(sendSavePoint) {
 	request.send();
 	request.addEventListener('load', sendOff)
 }
-
-
-
 });
